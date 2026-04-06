@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Build Docker image
-        run: docker build -t josepheric81/ciportfolio-app .
+        run: docker build -t ${{secrets.DOCKER_USERNAME}}/ciportfolio-app .
       
       - name: List Docker images
         run: docker images
