@@ -9,17 +9,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build Docker image
-        run: docker build -t ${{secrets.DOCKER_USERNAME}}/ciportfolio-app .
-      - name: docker login
+      
+      # Log in to Docker Hub using GitHub secrets
+      - name: Docker login
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}   # Docker username secret
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_PASSWORD }}   # Docker password or personal access token secret
 
-      - name: push image to registry
-        run: docker push ${{secrets.DOCKER_USERNAME}}/ciportfolio-app
+      # Build the Docker image
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ciportfolio-app .
+      
+      # Push the Docker image to Docker Hub
+      - name: Push image to registry
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/ciportfolio-app
+
+      # List Docker images to verify successful build
       - name: List Docker images
         run: docker images
