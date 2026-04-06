@@ -26,7 +26,7 @@ jobs:
       
       # Push the Docker image to Docker Hub
       - name: Push image to registry
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/ciportfolio-app
+        run: docker push ${{ secrets.DOCKER_USERNAME }}joeprotocol/ciportfolio-app
 
       # List Docker images to verify successful build
       
