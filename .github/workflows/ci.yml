@@ -29,5 +29,4 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/ciportfolio-app
 
       # List Docker images to verify successful build
-      - name: List Docker images
-        run: docker images
+      
