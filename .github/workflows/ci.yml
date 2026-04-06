@@ -1,16 +1,19 @@
 name: My first pipeline
 
-on: push 
+on: 
+  push: 
+    branches:
+      - main  # You might want to specify the branch you are working with
 
 jobs: 
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: checkout code
-              uses: actions/checkout@v2
-              build: build image
-              run: docker build -t josepheric81/ciportfolio-app .
-              name: list images
-              run: docker images
-            
-              
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Build Docker image
+        run: docker build -t josepheric81/ciportfolio-app .
+      
+      - name: List Docker images
+        run: docker images
