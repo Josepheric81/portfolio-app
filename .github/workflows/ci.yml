@@ -5,15 +5,12 @@ on: push
 jobs: 
     build:
         runs-on: ubuntu-latest
-        steps: 
-            - name: uptime
-              run: uptime
-            - name: Number of processor
-              run: nproc
-    test:
-        needs: [build]
-        runs-on: ubuntu-latest
         steps:
-            - name: hello 
-              run: echo hello
+            - name: checkout code
+              uses: actions/checkout@v2
+              build: build image
+              run: docker build -t josepheric81/ciportfolio-app .
+              name: list images
+              run: docker images
+            
               
